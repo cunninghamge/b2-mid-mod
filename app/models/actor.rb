@@ -9,4 +9,8 @@ class Actor < ApplicationRecord
   def self.avg_actor_age
     average(:age)
   end
+
+  def collaborators
+    Actor.joins(:roles).where.not(id: id).distinct
+  end
 end

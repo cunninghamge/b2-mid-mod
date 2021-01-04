@@ -1,0 +1,9 @@
+<h1><%= @actor.name %></h1>
+<p>Age: <%= @actor.age %></p>
+
+<section id='collaborators'>
+  <h2>Collaborators:</h2>
+  <ul><% @actor.collaborators.each do |collab| %>
+    <li><%= collab.name %></li>
+    <% end %></ul>
+</section>
