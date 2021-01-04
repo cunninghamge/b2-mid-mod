@@ -21,5 +21,10 @@ RSpec.describe Movie do
       ordered = [@actor_1, @actor_3, @actor_2]
       expect(@movie_1.ordered_actors).to eq(ordered)
     end
+
+    it '#avg_actor_age' do
+      avg = Actor.average(:age)
+      expect(@movie_1.avg_actor_age).to eq(avg)
+    end
   end
 end
