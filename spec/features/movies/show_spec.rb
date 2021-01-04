@@ -33,4 +33,13 @@ RSpec.describe "Movie Show" do
     avg = Actor.average(:age).round(1)
     expect(page).to have_content("Average Age: #{avg} years")
   end
+
+  it 'adds actors to the show page for that movie' do
+    idris = Actor.create!(name: "Idris Elba", age: 48)
+    fill_in("actor[name]", with: "Idris Elba")
+    click_button("Submit")
+
+    expect(current_path).to eq(movie_path(@movie_1))
+    expect(page).to have_content(idris.name)
+  end
 end
