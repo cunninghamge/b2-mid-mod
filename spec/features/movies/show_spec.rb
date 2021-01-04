@@ -7,6 +7,7 @@ RSpec.describe "Movie Show" do
     @actor_1 = Actor.create!(name: "Taylor Swift", age: 31)
     @actor_2 = Actor.create!(name: "Judi Dench",age: 86)
     @actor_3 = Actor.create!(name: "Jason Derulo",age: 32)
+    @movie_1.actors = [@actor_1, @actor_2, @actor_3]
 
     visit movie_path(@movie_1)
   end
@@ -20,6 +21,12 @@ RSpec.describe "Movie Show" do
   it 'lists all of the actors from youngest to oldest' do
     expect(@actor_1.name).to appear_before(@actor_3.name)
     expect(@actor_3.name).to appear_before(@actor_2.name)
+  end
+
+  it 'shows the age of each actor' do
+    within("#actor-#{@actor_1.id}") {expect(page).to have_content(@actor_1.age)}
+    within("#actor-#{@actor_2.id}") {expect(page).to have_content(@actor_2.age)}
+    within("#actor-#{@actor_3.id}") {expect(page).to have_content(@actor_3.age)}
   end
 
   it 'shows the average age of all of the actors' do
