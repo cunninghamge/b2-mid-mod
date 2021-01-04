@@ -5,7 +5,7 @@ RSpec.describe 'Studios Index' do
     @studio_1 = Studio.create!(name: "Universal Pictures", location: "Universal City, CA")
     @studio_2 = Studio.create!(name: "Columbia Pictures", location: "Los Angeles, CA")
     @movie_1 = @studio_1.movies.create!(title: "Cats", creation_year: 2019, genre: "musical")
-    @movie_2 = @studio_1.movies.create!(title: "Jurassic World", creation_year: 2015, genre: "musical")
+    @movie_2 = @studio_1.movies.create!(title: "Jurassic World", creation_year: 2015, genre: "action")
   end
 
   it 'lists all of the movie studios' do
