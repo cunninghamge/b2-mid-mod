@@ -34,13 +34,23 @@ RSpec.describe "Movie Show" do
     expect(page).to have_content("Average Age: #{avg} years")
   end
 
-  it 'adds actors to the show page for that movie' do
-    idris = Actor.create!(name: "Idris Elba", age: 48)
+  describe 'adding actors' do
+    it 'adds actors to the show page for that movie' do
+      idris = Actor.create!(name: "Idris Elba", age: 48)
 
-    fill_in("role[actor_name]", with: "Idris Elba")
-    click_button("Submit")
+      fill_in("role[actor_name]", with: "Idris Elba")
+      click_button("Submit")
 
-    expect(current_path).to eq(movie_path(@movie_1))
-    expect(page).to have_content(idris.name)
+      expect(current_path).to eq(movie_path(@movie_1))
+      expect(page).to have_content(idris.name)
+    end
+
+    it 'displays an error if the actor does not exist' do
+      fill_in("role[actor_name]", with: "Idris Elba")
+      click_button("Submit")
+
+      expect(current_path).to eq(movie_path(@movie_1))
+      expect(page).to have_content("Unable to add unknown actor")
+    end
   end
 end
