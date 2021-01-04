@@ -8,5 +8,11 @@
     <li id='actor-<%= actor.id %>'>
       <%= actor.name %> (<%= actor.age %>)</li>
     <% end %></ul>
-  <p>Average Age: <%= @movie.avg_actor_age.round(1) %> years</p>
+  <p>Average Age: <%= @movie.avg_actor_age.round(1) unless @movie.actors==[] %> years</p>
+  <p>Add another actor:</p>
+  <%= form_with model: [@movie, Role.new], local: true do |f| %>
+    <%= f.label :actor_name %><br>
+    <%= f.text_field :actor_name %><br>
+    <%= f.submit "Submit" %>
+  <% end %>
 </section>
