@@ -36,7 +36,8 @@ RSpec.describe "Movie Show" do
 
   it 'adds actors to the show page for that movie' do
     idris = Actor.create!(name: "Idris Elba", age: 48)
-    fill_in("actor[name]", with: "Idris Elba")
+
+    fill_in("role[actor_name]", with: "Idris Elba")
     click_button("Submit")
 
     expect(current_path).to eq(movie_path(@movie_1))
